@@ -1,1 +1,12 @@
-@charset "ISO-8859-1";
+
+.navbar .nav-item .nav-link{
+	font-size: 20px;
+	color: white;
+}
+
+.navbar .nav-item:hover .nav-link{
+	background: white;
+	color: black;
+	border-radius: 10px;
+	
+}
