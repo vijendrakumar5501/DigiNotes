@@ -17,6 +17,7 @@ public class UserDtls {
 	private String email;
 	private String password;
 	private String about;
+	private String role;
 	
 	
 	
