@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{user/base::Layout(~{::section})}">
+	th:replace="~{user/base::Layout(~{::section})}">
 <head>
 <meta charset="ISO-8859-1">
 <title>View Notes</title>
@@ -11,53 +11,62 @@
 			<h4 class="text-center">View All Notes</h4>
 			<div class="row">
 				<div class="col-md-10 offset-md-1 mt-2">
-					<div class="card">
-						<div class="card-body">
-							<div class="text-center">
-								<i class="fa-solid fa-book fa-2x"></i>
-							</div>
-
-							<p>What is Python ?</p>
-							<p>Python is programming Langauage</p>
-							<p>Publish Date : 2023-05-08</p>
-
-							<div class="text-center">
-								<a href="editNotes" class="btn btn-primary btn-sm">Edit</a> <a
-									href="deleteNotes" class="btn btn-danger btn-sm">Delete</a>
+					<div class="col-md-12 mt-3" th:each="n : ${Notes}">
+						<div class="card paint-card">
+							<div class="card-body">
+								<div class="text-center">
+									<img th:src="@{/img/paper.png}" alt="Note icon"
+										style="width: 50px; height: 50px;" />
+								</div>
+								<h5>[[${n.title}]]</h5>
+								<p>
+									Description: [[${n.content}]] <br> <span
+										class="font-weight-bold">Upload Date :</span>
+									[[${n.updateDate}]]
+								</p>
+								<div class="text-center">
+									<a th:href="@{/user/editNotes/{id}(id=${n.id})}"
+										class="btn btn-primary btn-sm">Edit</a> <a
+										th:href="@{/user/deleteNotes/{id}(id=${n.id})}"
+										class="btn btn-danger btn-sm ml-2">Delete</a>
+								</div>
 							</div>
 						</div>
-
-
 					</div>
-					<div class="row">
-  <div class="col-md-4">Total Elements : 20</div>
-  <div class="col-md-6">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</div>
-					
+
+					<div class="row p-4">
+						<div class="col-md-4">Total Elements : [[${totalElement}]]</div>
+						<div class="col-md-6">
+
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<li th:classappend="${pageNo==0}?'disabled':''"
+										class="page-item"><a
+										th:href="@{'/user/viewNotes/'+ ${pageNo-1}}" class="page-link"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									</a></li>
+
+									<li th:each="i : ${#numbers.sequence(1,totalPage)}"
+										th:classappend="${pageNo+1==i?'active':''}" class="page-item"><a
+										class="page-link" th:href="@{'/user/viewNotes/'+ ${i-1}}">[[${i}]]</a></li>
+
+									<li th:classappend="${pageNo+1==totalPage}?'disabled':''"
+										class="page-item"><a class="page-link"
+										th:href="@{'/user/viewNotes/'+ ${pageNo+1}}" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+
+
 				</div>
 
 			</div>
-			
+
 		</div>
-		
+
 
 	</section>
 </body>

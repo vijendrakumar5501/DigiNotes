@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-     th:replace="~{user/base::Layout(~{::section})}">
+	th:replace="~{user/base::Layout(~{::section})}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Notes Page</title>
@@ -16,17 +16,18 @@
 
 						</div>
 						<div class="card-body">
-							<form action="#" method="post">
+							<form th:action="@{/user/updateNotes}" method="post">
 								<div class="mb-3">
 									<label>Enter Title</label> <input type="text" name="title"
-										class="form-control">
+										th:value="${notes.title}" class="form-control">
 								</div>
 
 								<div class="mb-3">
 									<label>Enter Description</label>
 									<textarea rows="6" cols="" class="form-control"
-										name="content"></textarea>
+										th:value="${notes.content}" name="content">[[${notes.content}]]</textarea>
 								</div>
+								<input type="hidden" value="${notes.id}">
 
 								<button class="btn btn-primary mt-4">Save</button>
 

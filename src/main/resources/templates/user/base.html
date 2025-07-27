@@ -40,16 +40,14 @@
 						aria-current="page" th:href="@{/user/addNotes}">Add Notes</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/user/viewNotes}"> View Notes</a></li>
+						aria-current="page" th:href="@{/user/viewNotes/0}"> View Notes</a></li>
 
 				</ul>
 				<form class="d-flex" role="search">
-				<a th:href="@{/user/viewProfile}" class="btn btn-light">
-  <i class="fa-solid fa-right-to-bracket"></i>
-  <span th:if="${user != null}" th:text="${user.name}">User</span>
-</a>
-<a
-						th:href="@{/logout}" class="btn btn-light ms-2"><i
+					<a th:href="@{/user/viewProfile}" class="btn btn-light"> <i
+						class="fa-solid fa-right-to-bracket"></i> <span
+						th:if="${user != null}" th:text="${user.name}">User</span>
+					</a> <a th:href="@{/logout}" class="btn btn-light ms-2"><i
 						class="fa-solid fa-user-plus"></i> Logout</a>
 				</form>
 			</div>
